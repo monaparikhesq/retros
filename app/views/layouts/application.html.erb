@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Retros</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="navbar navbar-inverse">
+  <div class="navbar-inner">
+    <a class="brand" href="<%= root_url %>">Code Academy TeamRetros</a>
+    <ul class="nav">
+      <li class="active"><a href="#">Retros</a></li>
+      <li><a href="<%= teams_url %>">Teams</a></li>
+      <li><a href="#">Users</a></li>
+      <li><a href="#" class="pull-right">Sign Out</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+<%= yield %>
+</div>
+
+</body>
+</html>

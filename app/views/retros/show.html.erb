@@ -1,0 +1,76 @@
+<p id="notice"><%= notice %></p>
+
+<table class="table table-bordered">
+  <tr><td>Team</td><td><%= @retro.team.name %></td></tr>
+  <tr><td>Date</td><td><%= @retro.created_at.strftime("%A, %B %e, %Y") %></td></tr>
+  <tr><td>Sprint</td><td><%= @retro.sprint %></td></tr>
+</table>  
+
+<div class="leftSide">
+<div class="start">
+<h1 class="inline">Start</h1>
+<span class="badge badge-success"><%= @notes.where(:category_id => 1).count %></span> 
+<%= form_tag notes_url, :remote => true do %> 
+<%= hidden_field_tag 'category_id', 1 %>
+<%= hidden_field_tag 'retro_id', @retro.id %>
+<%= text_field_tag 'description' %>
+<%= submit_tag 'Submit', :class => 'btn' %>
+<% end %>
+
+<ul>
+<% @start.each do |note| %>
+<li><%= note.description %><%= link_to((image_tag 'purple.png', :size => "20x20"), note_url(note), :method => 'delete') %></li>
+<% end %>
+</ul>  
+</div>  
+
+<div class="continue">
+<h1 class="inline">Continue</h1>
+<span class="badge badge-warning"><%= @notes.where(:category_id => 3).count %></span> 
+<%= form_tag notes_url, :remote => true do %> 
+<%= hidden_field_tag 'category_id', 3 %>
+<%= hidden_field_tag 'retro_id', @retro.id %>
+<%= text_field_tag 'description' %>
+<%= submit_tag 'Submit', :class => 'btn' %>
+<% end %>
+
+<ul>
+<% @continue.each do |note| %>
+<li><%= note.description %><%= link_to((image_tag 'purple.png', :size => "20x20"), note_url(note), :method => 'delete') %></li><% end %>
+</ul>
+</div>
+</div><!-- leftSide -->
+
+<div class="rightSide">
+<div class="stop">
+<h1 class="inline">Stop</h1>
+<span class="badge badge-important"><%= @notes.where(:category_id => 2).count %></span>  
+<%= form_tag notes_url, :remote => true do %> 
+<%= hidden_field_tag 'category_id', 2 %>
+<%= hidden_field_tag 'retro_id', @retro.id %>
+<%= text_field_tag 'description' %>
+<%= submit_tag 'Submit', :class => 'btn' %>
+<% end %>
+
+<ul>
+<% @stop.each do |note| %>
+<li><%= note.description %><%= link_to((image_tag 'purple.png', :size => "20x20"), note_url(note), :method => 'delete') %></li><% end %>
+</ul>
+</div>
+
+<div class="aha">
+<h1 class="inline">Aha</h1>
+<span class="badge badge-info"><%= @notes.where(:category_id => 4).count %></span>  
+<%= form_tag notes_url, :remote => true do %> 
+<%= hidden_field_tag 'category_id', 4 %>
+<%= hidden_field_tag 'retro_id', @retro.id %>
+<%= text_field_tag 'description' %>
+<%= submit_tag 'Submit', :class => 'btn' %>
+<% end %>
+
+<ul>
+<% @aha.each do |note| %>
+<li><%= note.description %><%= link_to((image_tag 'purple.png', :size => "20x20"), note_url(note), :method => 'delete') %></li><% end %> 
+</ul>
+</div>
+</div><!-- rightSide -->      
